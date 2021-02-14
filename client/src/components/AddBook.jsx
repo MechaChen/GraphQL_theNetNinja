@@ -9,8 +9,6 @@ function AddBook() {
     const { loading, data: authorData } = useQuery(getAuthorsQuery)
     const [addBook, { data: bookData }] = useMutation(addBookMutation)
 
-    console.log('authorData =>', authorData)
-
     const displayAuthors = () => {
         if (loading) {
             return <option disabled>Loading Authors...</option>
@@ -25,9 +23,7 @@ function AddBook() {
 
     const submitForm = (e) => {
         e.preventDefault()
-        console.log('name =>', name)
-        console.log('genre =>', genre)
-        console.log('authorId =>', authorId)
+        addBook({ variables: { name, genre, authorId } })
     }
 
     return (
